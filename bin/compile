@@ -8,7 +8,7 @@ CACHE_DIR=$2
 # config
 OS="linux"
 ARCH="x86_64"
-VERSION="2.4.8"
+VERSION="3.0.6"
 
 # package
 PACKAGE_NAME="mongodb-${OS}-${ARCH}-${VERSION}"
@@ -21,11 +21,10 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   curl $MONGODB_ARCHIVE -s -o $CACHE_DIR/$FILE_NAME
 fi
 
-echo "-----> Extracting MongoDB binaries" 
+echo "-----> Extracting MongoDB binaries"
 mkdir -p $BUILD_DIR/vendor
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor
 mv $BUILD_DIR/vendor/$PACKAGE_NAME $BUILD_DIR/vendor/mongodb
 mkdir -p $BUILD_DIR/bin
 cd $BUILD_DIR/bin
 ln -s ../vendor/mongodb/bin/* .
-
