@@ -43,3 +43,11 @@ if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching MongoDB binaries from ${MONGODB_ARCHIVE}"
   curl $MONGODB_ARCHIVE -s -o $CACHE_DIR/$FILE_NAME
 fi
+
+echo "-----> Extracting MongoDB binaries $BUILD_DIR"
+mkdir -p $BUILD_DIR/vendor
+tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor
+mv $BUILD_DIR/vendor/$PACKAGE_NAME $BUILD_DIR/vendor/mongodb
+mkdir -p $BUILD_DIR/bin
+cd $BUILD_DIR/bin
+ln -s ../vendor/mongodb/bin/* .
