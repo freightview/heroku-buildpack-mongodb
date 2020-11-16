@@ -50,4 +50,4 @@ mkdir -p $BUILD_DIR/vendor
 tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/mongodb/bin
 mkdir -p $BUILD_DIR/bin
 cd $BUILD_DIR/bin
-ln -s ../vendor/mongodb/bin/* .
+ln -s ../vendor/mongodb/bin/$BINARY .
