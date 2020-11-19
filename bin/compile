@@ -13,7 +13,6 @@ PACKAGE_NAME="mongodb-database-tools-$OS-$ARCH-$VERSION"
 FILE_NAME="${PACKAGE_NAME}.tgz"
 MONGODB_ARCHIVE="https://fastdl.mongodb.org/tools/db/$FILE_NAME"
 
-# mongo database tools
 echo "-----> making cache directory $CACHE_DIR/$FILE_NAME"
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
@@ -28,26 +27,3 @@ mv $BUILD_DIR/vendor/$PACKAGE_NAME $BUILD_DIR/vendor/mongodb
 mkdir -p $BUILD_DIR/bin
 cd $BUILD_DIR/bin
 ln -s ../vendor/mongodb/bin/* .
-
-
-# mongo shell
-ARCH="linux"
-VERSION="0.5.2"
-BINARY="mongosh"
-PACKAGE_NAME="$BINARY-$VERSION-$ARCH"
-FILE_NAME="${PACKAGE_NAME}.tgz"
-MONGODB_ARCHIVE="https://downloads.mongodb.com/compass/$FILE_NAME"
-
-echo "-----> making cache directory $CACHE_DIR/$FILE_NAME"
-mkdir -p $CACHE_DIR
-if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
-  echo "-----> Fetching MongoDB binaries from ${MONGODB_ARCHIVE}"
-  curl $MONGODB_ARCHIVE -s -o $CACHE_DIR/$FILE_NAME
-fi
-
-echo "-----> Extracting MongoDB binaries $BUILD_DIR"
-mkdir -p $BUILD_DIR/vendor
-tar zxf $CACHE_DIR/$FILE_NAME -C $BUILD_DIR/vendor/mongodb/bin
-mkdir -p $BUILD_DIR/bin
-cd $BUILD_DIR/bin
-ln -s ../vendor/mongodb/bin/$BINARY .
